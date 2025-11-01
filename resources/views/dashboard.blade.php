@@ -12,14 +12,6 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-welcome />
             </div>
-
-            <!-- Mirrors Table -->
-            <div class="mt-6">
-                <livewire:mirror />
-            </div>
-
-            <!-- Mirror Form Modal -->
-            <livewire:mirror-form />
         </div>
     </div>
 </x-app-layout>

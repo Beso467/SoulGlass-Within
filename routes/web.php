@@ -16,5 +16,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/mirror', Mirror::class)->name('mirror.index');
+    Route::get('/mirror', function () {
+        return view('mirror'); // Create mirror/index.blade.php
+    })->name('mirror.index');
 });

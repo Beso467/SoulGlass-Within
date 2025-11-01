@@ -4,22 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Mirror;
+use Livewire\Attributes\On;
 
 class MirrorForm extends Component
 {
-    public $mirrorId = null;
-    public $name = null;
-    public $description = null;
-    public $season = null;
-    public $slug = null;
-    public $is_active = null;
-    public $starts_at = null;
-    public $ends_at = null;
+    public $mirrorId, $name, $description, $season, $slug, $is_active, $starts_at, $ends_at;
     public $showModal = false;
-    protected $listeners = [
-        'create' => 'create',
-        'edit' => 'edit',
-    ];
 
     protected $rules = [
         'name' => 'required',
@@ -28,18 +18,22 @@ class MirrorForm extends Component
         'slug' => 'required',
     ];
 
+    // Listen for the create event from Blade
+    #[On('mirrorCreate')]
     public function create()
     {
         $this->reset([
-            'mirrorId','name','slug','season'
-            ,'description','is_active',
-            'starts_at','ends_at'
+            'mirrorId','name','slug','season','description','is_active','starts_at','ends_at'
         ]);
+
         $this->showModal = true;
     }
 
-    public function edit(Mirror $mirror)
+    // Listen for edit events
+    #[On('mirror-edit')]
+    public function edit($mirrorId)
     {
+        $mirror = Mirror::findOrFail($mirrorId);
         $this->mirrorId = $mirror->id;
         $this->name = $mirror->name;
         $this->slug = $mirror->slug;
@@ -51,16 +45,11 @@ class MirrorForm extends Component
         $this->showModal = true;
     }
 
-    public function render()
-    {
-        return view('livewire.mirror-form');
-    }
-
     public function save()
     {
         $this->validate();
 
-        Mirror::updateOrCreate(
+        $mirror = Mirror::updateOrCreate(
             ['id' => $this->mirrorId],
             [
                 'name' => $this->name,
@@ -74,7 +63,14 @@ class MirrorForm extends Component
         );
 
         $this->showModal = false;
-        $this->emit('mirrorSaved');
+
+        // Dispatch an event after saving
+        $this->dispatch('mirror-saved', mirrorId: $mirror->id);
+        $this->dispatch('mirror-saved');
     }
 
+    public function render()
+    {
+        return view('livewire.mirror-form');
+    }
 }
