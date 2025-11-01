@@ -15,9 +15,16 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('mirror.index') }}" :active="request()->routeIs('dashboard')">
+                    @if(auth()->user()->is_admin)
+                    <x-nav-link href="{{ route('mirror.index') }}" :active="request()->routeIs('mirror.index')">
                         {{ __('Mirrors') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('quote.index') }}" :active="request()->routeIs('quote.index')">
+                        {{ __('Quotes') }}
+                    </x-nav-link>
+                    @else
+                    
+                    @endif
                 </div>
             </div>
 

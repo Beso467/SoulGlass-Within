@@ -2,6 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        color-scheme: dark;
+    }
+
+    body {
+        @apply bg-gray-950 text-gray-100;
+    }
+
+    nav {
+        @apply bg-gray-900 border-gray-800 text-gray-200;
+    }
+
+    /* Override Jetstream light backgrounds */
+    .bg-white {
+        background-color: #111827 !important; /* gray-900 */
+    }
+
+    /* Fix invisible text */
+    .text-gray-800,
+    .text-gray-900,
+    .text-gray-700 {
+        color: #f3f4f6 !important; /* gray-100 */
+    }
+
+    /* Muted text still readable */
+    .text-gray-500,
+    .text-gray-400 {
+        color: #9ca3af !important; /* gray-400 */
+    }
+
+    /* Hover effects stay visible */
+    .hover\:bg-gray-100:hover {
+        background-color: #1f2937 !important; /* gray-800 */
+    }
+
+    /* Borders for contrast */
+    .border-gray-100 {
+        border-color: #1f2937 !important; /* gray-800 */
+    }
+
+    /* Dark mode login page */
+    body.login-page {
+        @apply bg-gray-950 text-gray-100;
+    }
+
+    body.login-page input,
+    body.login-page label,
+    body.login-page a {
+        @apply text-gray-100;
+    }
+
+    body.login-page .bg-white {
+        @apply bg-gray-900 !important;
+    }
+
+    body.login-page .text-gray-600 {
+        @apply text-gray-400 !important;
+    }
+}
+
 [x-cloak] {
     display: none;
 }

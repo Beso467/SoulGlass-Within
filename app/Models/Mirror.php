@@ -10,4 +10,9 @@ class Mirror extends Model
         'name', 'slug', 'season', 'is_active', 'description',
         'starts_at', 'ends_at',
     ];
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class, 'mirror_id');
+    }
 }

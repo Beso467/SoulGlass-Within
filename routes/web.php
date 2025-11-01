@@ -19,4 +19,8 @@ Route::middleware([
     Route::get('/mirror', function () {
         return view('mirror'); // Create mirror/index.blade.php
     })->name('mirror.index');
+
+    Route::get('/quote', function () {
+        return view('quote'); // Create mirror/index.blade.php
+    })->name('quote.index');
 });

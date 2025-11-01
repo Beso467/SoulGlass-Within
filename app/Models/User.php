@@ -71,4 +71,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function seenQuotes()
+    {
+        return $this->hasMany(UserQuote::class, 'user_id');
+    }
 }
