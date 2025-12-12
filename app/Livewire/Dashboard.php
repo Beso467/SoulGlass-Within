@@ -15,6 +15,7 @@ class Dashboard extends Component
     public $mirrorName = null;
     public $isReveal = false;
     public $addedToScroll = false;
+    public $mirrorIcon = null;
 
     public function mount()
     {
@@ -26,6 +27,7 @@ class Dashboard extends Component
             $this->isReveal = true;
             $this->quote = $user->seenQuotes->sortBy('created_at', false)->first()->quote->text;
             $this->mirrorName = $user->seenQuotes->sortBy('created_at', false)->first()->quote->mirror->name;
+            $this->mirrorIcon = $user->seenQuotes->sortBy('created_at', false)->first()->quote->mirror->icon;
         }
         if(in_array($user->lastSeenQuote()->id, $user->scroll->pluck('quote_id')->toArray())) $this->addedToScroll = true;
     }

@@ -2,6 +2,9 @@
     <div class="relative w-full max-w-lg aspect-[4/3] border-2 border-dotted border-gray-500/50 rounded-2xl flex flex-col items-center justify-center text-center p-8 shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition duration-500">
         <span>Current Streak: {{ Auth::user()->current_streak }}</span>
         @if($isReveal)
+        <h1 class="text-5xl font-yarndings tracking-widest text-gray-200 mb-1 uppercase">
+            {{ $mirrorIcon }}
+        </h1>
         <h1 class="text-2xl font-bold tracking-widest text-gray-200 mb-3 uppercase">
             {{ $mirrorName }}
         </h1>
