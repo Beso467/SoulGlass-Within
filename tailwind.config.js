@@ -15,6 +15,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                yarndings: ['"Yarndings 12 Charted"', 'sans-serif'],
             },
         },
     },

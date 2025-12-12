@@ -25,10 +25,18 @@
             Reveal
         </button>
         @else
-        <button
-            class="px-6 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold tracking-wide transition duration-300">
-            Come back tomorrow
-        </button>
+        <div class="d-flex align-content-center">
+            @if(!$addedToScroll)
+            <button wire:click="addToScroll('{{ $quote }}')"
+            class="px-6 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-yarndings tracking-wide transition duration-300">
+                y
+            </button>
+            @endif
+            <button
+                class="px-6 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold tracking-wide transition duration-300">
+                Come back tomorrow
+            </button>
+        </div>
         @endif
 
         <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gray-950 px-4 text-gray-500 text-xs uppercase tracking-wider">

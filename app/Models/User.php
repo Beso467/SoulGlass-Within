@@ -29,6 +29,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'last_seen_quote',
+        'is_admin',
+        'no_save_streak',
+        'save_streak',
+        'last_saved_quote_at',
+        'highest_streak',
     ];
 
     /**
@@ -63,5 +69,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function seenQuotes()
+    {
+        return $this->hasMany(UserQuote::class, 'user_id');
+    }
+
+    public function scroll()
+    {
+        return $this->hasMany(UserScrollQuote::class, 'user_id');
+    }
+
+    public function lastSeenQuote()
+    {
+        return $this->seenQuotes->first()->quote;
     }
 }

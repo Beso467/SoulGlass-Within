@@ -8,7 +8,7 @@ class Mirror extends Model
 {
     protected $fillable = [
         'name', 'slug', 'season', 'is_active', 'description',
-        'starts_at', 'ends_at',
+        'starts_at', 'ends_at', 'icon',
     ];
 
     public function quotes()

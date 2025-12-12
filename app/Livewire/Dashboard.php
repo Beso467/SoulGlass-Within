@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Quote;
 use App\Models\UserQuote;
+use App\Models\UserScrollQuote;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,7 @@ class Dashboard extends Component
     public $quote = null;
     public $mirrorName = null;
     public $isReveal = false;
+    public $addedToScroll = false;
 
     public function mount()
     {
@@ -25,6 +27,7 @@ class Dashboard extends Component
             $this->quote = $user->seenQuotes->sortBy('created_at', false)->first()->quote->text;
             $this->mirrorName = $user->seenQuotes->sortBy('created_at', false)->first()->quote->mirror->name;
         }
+        if(in_array($user->lastSeenQuote()->id, $user->scroll->pluck('quote_id')->toArray())) $this->addedToScroll = true;
     }
 
     public function generateQuote()
@@ -63,7 +66,7 @@ class Dashboard extends Component
                     ->first();
             }
 
-            $this->quote = $quote ? $quote->text : "No quotes available.";
+            $this->quote = $quote ? $quote : "No quotes available.";
 
             // Record it as seen
             if ($quote) {
@@ -94,11 +97,21 @@ class Dashboard extends Component
         $month = now()->month;
 
         return match (true) {
-            $month >= 3 && $month <= 5 => 'spring',
-            $month >= 6 && $month <= 8 => 'summer',
-            $month >= 9 && $month <= 11 => 'fall',
-            default => 'winter',
+            $month >= 3 && $month <= 5 => 'Spring',
+            $month >= 6 && $month <= 8 => 'Summer',
+            $month >= 9 && $month <= 11 => 'Fall',
+            default => 'Winter',
         };
+    }
+
+    public function addToScroll()
+    {
+        $user = Auth::user();
+        $actualQuote = $user->lastSeenQuote();
+        UserScrollQuote::create([
+            'user_id' => $user->id,
+            'quote_id' => $actualQuote->id,
+        ]);
     }
 
     public function render()

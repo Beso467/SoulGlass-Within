@@ -8,7 +8,7 @@ use Livewire\Attributes\On;
 
 class MirrorForm extends Component
 {
-    public $mirrorId, $name, $description, $season, $slug, $is_active, $starts_at, $ends_at;
+    public $mirrorId, $name, $description, $season, $slug, $is_active, $starts_at, $ends_at, $icon;
     public $showModal = false;
 
     protected $rules = [
@@ -23,7 +23,7 @@ class MirrorForm extends Component
     public function create()
     {
         $this->reset([
-            'mirrorId','name','slug','season','description','is_active','starts_at','ends_at'
+            'mirrorId','name','slug','season','description','is_active','starts_at','ends_at', 'icon'
         ]);
 
         $this->showModal = true;
@@ -43,6 +43,7 @@ class MirrorForm extends Component
         $this->starts_at = $mirror->starts_at?->format('Y-m-d\TH:i');
         $this->ends_at = $mirror->ends_at?->format('Y-m-d\TH:i');
         $this->showModal = true;
+        $this->icon = $mirror->icon;
     }
 
     public function save()
@@ -59,6 +60,7 @@ class MirrorForm extends Component
                 'is_active' => $this->is_active ?? true,
                 'starts_at' => $this->starts_at,
                 'ends_at' => $this->ends_at,
+                'icon' => $this->icon
             ]
         );
 
