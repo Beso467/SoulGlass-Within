@@ -68,7 +68,7 @@ class Dashboard extends Component
                     ->first();
             }
 
-            $this->quote = $quote ? $quote : "No quotes available.";
+            $this->quote = $quote->text ? $quote->text : "No quotes available.";
 
             // Record it as seen
             if ($quote) {

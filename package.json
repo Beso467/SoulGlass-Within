@@ -19,6 +19,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@fontsource/yarndings-12": "^5.2.8",
         "@fontsource/yarndings-12-charted": "^5.2.8"
     }
 }

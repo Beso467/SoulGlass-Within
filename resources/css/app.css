@@ -5,3 +5,65 @@
 [x-cloak] {
     display: none;
 }
+
+
+.dashboard-header {
+    animation: fadePulse 30s ease-in-out;
+}
+
+@keyframes fadePulse {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.font-yarndings {
+  font-family: "Yarndings 12", monospace;
+}
+
+
+.soulglass-logo{
+  color: aliceblue;
+}
+
+
+/* DASHBOARD START */
+.mirror-box{
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 3rem;
+  position: relative;
+  color: aliceblue;
+  margin-top: 3rem;
+  .streak-counter{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+  h2.mirror-icon{
+    font-size: 55px;
+    text-align: center;
+
+  }
+  p.quote-text{
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .primary-btn{
+    position: absolute;
+    font-size: 11px;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid whitesmoke;
+  }
+}

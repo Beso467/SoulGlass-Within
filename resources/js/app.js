@@ -1,2 +1,2 @@
 import './bootstrap';
-import "@fontsource/yarndings-12-charted"; // default weight
+import "@fontsource/yarndings-12";
