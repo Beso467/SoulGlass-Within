@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\MirrorController;
+use App\Http\Controllers\ScrollController;
 
 Route::inertia('/', 'welcome', [
     'canRegister' => Features::enabled(Features::registration()),
@@ -21,6 +22,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('mirror/reveal', [MirrorController::class, 'reveal'])->name('mirror.reveal');
     Route::post('scroll/{userQuote}/favorite', [MirrorController::class, 'favorite'])->name('scroll.favorite');
 
-    Route::inertia('scroll', 'scroll')->name('scroll');
+    Route::get('scroll', [ScrollController::class, 'show'])->name('scroll');
     Route::inertia('lore', 'lore')->name('lore');
 });

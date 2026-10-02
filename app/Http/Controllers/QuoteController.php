@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quote;
+use App\Services\MirrorService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class QuoteController extends Controller
 {
@@ -34,7 +36,7 @@ class QuoteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Quote $quote)
+    public function show(Request $request)
     {
         //
     }

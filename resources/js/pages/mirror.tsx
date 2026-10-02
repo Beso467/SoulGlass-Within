@@ -55,7 +55,7 @@ export default function MirrorPage({ mirror, dayCount, today }: Props) {
         setBusy(true);
         router.post(
             '/mirror/reveal',
-            {},
+            { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone },
             {
                 preserveScroll: true,
                 onSuccess: () => setJustRevealed(true),

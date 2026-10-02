@@ -99,3 +99,164 @@
         animation: none;
     }
 }
+
+/* Scroll page: a plain-line scroll with a roller at each end. */
+.scroll-roll {
+    position: relative;
+    z-index: 1;
+    height: 22px;
+    margin: 0 -10px;
+    border: 1.5px solid #a39c8f;
+    border-radius: 11px;
+    background: #000;
+}
+
+.scroll-body {
+    margin: -1px 4px;
+    padding: 32px 22px;
+    border-left: 1.5px solid #3a362f;
+    border-right: 1.5px solid #3a362f;
+    background: #080808;
+}
+
+/* Settings: restyle the starter kit's form parts to match Soulglass. */
+.soul-settings > * + * {
+    border-top: 1px solid #262626;
+    padding-top: 3rem;
+}
+
+.soul-settings h2 {
+    font-family: 'Doto', ui-monospace, monospace;
+    font-size: 1.375rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.375rem;
+}
+
+.soul-settings [data-slot='label'] {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a3a3a3;
+}
+
+.soul-settings [data-slot='input'] {
+    height: 3.25rem;
+    padding: 0 1.125rem;
+    border: 1px solid #404040;
+    border-radius: 1rem;
+    background: #0a0a0a;
+    font-size: 1rem;
+    box-shadow: none;
+}
+
+.soul-settings [data-slot='input']:focus-visible {
+    border-color: #fff;
+}
+
+.soul-settings [data-slot='button'] {
+    height: 3.25rem;
+    padding: 0 1.75rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: none;
+}
+
+/* Tab bar: each icon plays a short animation when its tab becomes active. */
+.tab-icon,
+.tab-icon * {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+a[aria-current='page'] .tab-icon-mirror {
+    animation: tab-pop 0.45s ease-out;
+}
+
+a[aria-current='page'] .tab-icon-mirror .glint {
+    stroke-dasharray: 10;
+    animation: tab-glint 0.6s ease-out;
+}
+
+a[aria-current='page'] .tab-icon-scroll {
+    animation: tab-unroll 0.5s ease-out;
+}
+
+a[aria-current='page'] .tab-icon-lore {
+    animation: tab-flip 0.5s ease-in-out;
+}
+
+a[aria-current='page'] .tab-icon-settings .knob-a {
+    animation: tab-slide-right 0.5s ease-in-out;
+}
+
+a[aria-current='page'] .tab-icon-settings .knob-b {
+    animation: tab-slide-left 0.5s ease-in-out;
+}
+
+@keyframes tab-pop {
+    0% {
+        transform: scale(0.8);
+    }
+    60% {
+        transform: scale(1.12);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes tab-glint {
+    from {
+        stroke-dashoffset: 10;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes tab-unroll {
+    0% {
+        transform: scaleY(0.45) rotate(-10deg);
+    }
+    60% {
+        transform: scaleY(1.08) rotate(3deg);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+@keyframes tab-flip {
+    0% {
+        transform: scaleX(1);
+    }
+    50% {
+        transform: scaleX(0.15);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes tab-slide-right {
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes tab-slide-left {
+    50% {
+        transform: translateX(-5px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tab-icon,
+    .tab-icon * {
+        animation: none !important;
+    }
+}
