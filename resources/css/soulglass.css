@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@500;700;900&display=swap');
+
+/* Soulglass Within — styles for the mirror screens. */
+
+.font-dot {
+    font-family: 'Doto', ui-monospace, monospace;
+}
+
+.mirror-frame {
+    border: 6px dotted #a39c8f;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.8)
+        radial-gradient(circle, #1d1d1d 1px, transparent 1.5px) 0 0 / 14px 14px;
+    background-clip: padding-box;
+    -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1.5px);
+}
+
+.mirror-flash {
+    animation: mirror-flash 0.9s ease-out;
+}
+
+.mirror-rise {
+    animation: mirror-rise 0.8s ease-out 0.25s both;
+}
+
+.mirror-pulse {
+    animation: mirror-pulse 2.4s ease-in-out infinite;
+}
+
+/* Fall: dot-matrix leaves drifting down behind the mirror. */
+.leaf {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 36px;
+    opacity: 0.9;
+    background: radial-gradient(circle, var(--leaf) 2px, transparent 2.6px) 0 0 /
+        6px 6px;
+    clip-path: polygon(50% 0, 88% 28%, 100% 62%, 50% 100%, 0 62%, 12% 28%);
+    animation: leaf-fall linear infinite;
+}
+
+@keyframes leaf-fall {
+    0% {
+        transform: translate(0, -60px) rotate(0);
+    }
+    50% {
+        transform: translate(36px, 50vh) rotate(150deg);
+    }
+    100% {
+        transform: translate(-12px, 110vh) rotate(300deg);
+    }
+}
+
+@keyframes mirror-flash {
+    0% {
+        border-color: #a39c8f;
+        transform: scale(1);
+    }
+    30% {
+        border-color: #fff;
+        transform: scale(1.02);
+    }
+    100% {
+        border-color: #a39c8f;
+        transform: scale(1);
+    }
+}
+
+@keyframes mirror-rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes mirror-pulse {
+    0%,
+    100% {
+        opacity: 0.35;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leaf {
+        display: none;
+    }
+    .mirror-flash,
+    .mirror-rise,
+    .mirror-pulse {
+        animation: none;
+    }
+}
